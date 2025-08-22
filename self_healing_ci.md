@@ -14,11 +14,54 @@ Have you ever dreamt of a CI that's always green?
 
 Robots are writing code!!
 
+- all the code is production ready
+- human engineers are legacy tech
+- we can all sit back and drink coffee
+
 ---
 
-### The feedback loops
+### The contribution feedback loop
 
-oh no we already had problems and now they're worse
+```
+~~~mermaid-ascii
+flowchart LR
+Developer -->|writes code| PullRequest
+PullRequest --> CI
+CI -->|Errors| Developer
+CI --> Review
+Review -->|Feedback| Developer
+Review --> Merged
+~~~
+```
+
+- asynchronous between multiple people
+- requires context switching
+
+---
+
+### Pull requests are where dreams die
+
+```
+~~~mermaid-ascii
+graph TD
+Developer1 --> Reviewers
+DeveloperN --> Reviewers
+~~~
+```
+
+---
+
+### Pull requests are where dreams die
+
+```
+~~~mermaid-ascii
+graph TD
+Developer1 --> Reviewers
+DeveloperN --> Reviewers
+Agent1 --> Reviewers
+AgentN --> Reviewers
+~~~
+```
 
 ---
 
@@ -26,35 +69,86 @@ oh no we already had problems and now they're worse
 
 We already have the tools, lets put our powers to use
 
+Big organizations have entire teams that solve these kinds of problems
+- DevEx teams: empower developers with better tooling
+- Platform teams: provide the systems for automation and validation
+- RelEng teams: build out advanced CI pipelines
+
+Open source projects address these problems with
+- trustworthy test suites
+- a high bar for contributions. If its not good, it gets ignored or closed
+- give up and abandon the project
+
 ---
 
 ### Self healing CI?
 
-What does that mean?
+A self-healing CI system is one component of "agentic CI"
+
+Why?
+- lint errors tell you exactly what the issue is
+- some linters can even _just fix it_
+- good test failures provide enough detail for an agent to fix
+
+We're adding agents to the development flow, why not also in CI?
+
+---
+
+### How do we safely ship it?
+
+A self healing CI system must be
+- trustworthy
+- reliable
+- cost effective
 
 ---
 
 ### Trust
 
-A trustworthy system is one that we believe will produce correct output. For an AI Agent, it means it cannot ever give us what we've all come to know as "AI slop".
+A trustworthy system
+- we believe will produce correct output
+- cannot ever give us what we've all come to know as "AI slop".
+
+How? The agent in CI needs
+- ability to use our actual dev tools for lint, test, build
+- context on the task the PR is solving
+- context on the code changes in the PR
 
 ---
 
 ### Reliability
 
-A reliable system is one that we know will consistently fix the problems in CI. The success rate needs to be so high that we're not still spending almost as much time debugging CI failures as we did without the agent.
+A reliable system is one that we know will consistently fix the problems in CI.
+
+How? Agent evals
+- like integration tests for an agentic system
+- measure the performance of the agent in a variety of realistic scenarios
+- identify where an agent can go wrong
+- guide and measure improvements to prompts and tools
 
 ---
 
-### Cheap?
+### Cost effective
 
-A cost-effective system means we're not sending our entire budget to one of the big AI companies. We must be able to self-host a small and specialized LLM capable of being trustworthy and reliable.
+Dont send your entire budget to one of the big AI companies
+
+- Using Anthropic/OpenAI/Google API keys is usually the most expensive option
+- Hosting options in your cloud: AWS Bedrock, Google Vertex, Azure AI Service
+- Run in Kubernetes with GPUs on your nodes
+- Local options with Ollama, Docker, llama.cpp, LM Studio
 
 ---
 
 ## Demo
 
-Its demo time!
+       /_\
+      /'-'\            |------------*-----------|
+    ,'/ ^ ^ \',        |       DEMO TIME!       |
+    |  >--@ |          |                        |
+    '.\___,/.'         |                        |
+                       |________________________|
+                      /=========================/
+                     /____________===__________/
 
 ---
 
