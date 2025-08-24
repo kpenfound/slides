@@ -158,4 +158,6 @@ Check out [dagger.io](https://dagger.io) and join the Discord!
 
 Read my blog post about [the evolution of CI](https://dagger.io/blog/evolution-of-ci)
 
+Find more of my content at [kylepenfound.com](https://kylepenfound.com)
+
 Find these slides at [github.com/kpenfound/slides](https://github.com/kpenfound/slides)
