@@ -29,7 +29,7 @@ func (m *Slides) Slides(
 }
 
 func withSlides(ctr *dagger.Container) *dagger.Container {
-	slides := dag.Git("https://github.com/maaslalani/slides.git").Head().Tree()
+	slides := dag.Git("https://github.com/maaslalani/slides.git").Ref("v0.9.0").Tree()
 	build := dag.Container().
 		From("golang:latest").
 		WithDirectory("/app", slides).
@@ -39,7 +39,7 @@ func withSlides(ctr *dagger.Container) *dagger.Container {
 }
 
 func withMermaidAscii(ctr *dagger.Container) *dagger.Container {
-	slides := dag.Git("https://github.com/AlexanderGrooff/mermaid-ascii.git").Head().Tree()
+	slides := dag.Git("https://github.com/AlexanderGrooff/mermaid-ascii.git").Ref("0.7.0").Tree()
 	build := dag.Container().
 		From("golang:latest").
 		WithDirectory("/app", slides).
