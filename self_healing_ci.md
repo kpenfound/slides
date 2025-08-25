@@ -10,17 +10,17 @@ Have you ever dreamt of a CI that's always green?
 
 ---
 
-## The robots have arrived!
+## 🤖 The robots have arrived!
 
 Robots are writing code!!
 
-- all the code is production ready
-- human engineers are legacy tech
-- we can all sit back and drink coffee
+- all the code is production ready      ✅
+- human engineers are legacy tech       🧑‍💻
+- we can all sit back and drink coffee  ☕
 
 ---
 
-### The contribution feedback loop
+### 🔄 The contribution feedback loop
 
 ```
 ~~~mermaid-ascii
@@ -39,7 +39,7 @@ Review --> Merged
 
 ---
 
-### Pull requests are where dreams die
+### 😅 Pull requests are where dreams die
 
 ```
 ~~~mermaid-ascii
@@ -51,7 +51,7 @@ DeveloperN --> Reviewers
 
 ---
 
-### Pull requests are where dreams die
+### 😭 Pull requests are where dreams die
 
 ```
 ~~~mermaid-ascii
@@ -65,7 +65,7 @@ AgentN --> Reviewers
 
 ---
 
-## DevOps to the rescue!
+## 👷 DevOps to the rescue!
 
 We already have the tools, lets put our powers to use
 
@@ -81,7 +81,7 @@ Open source projects address these problems with
 
 ---
 
-### Self healing CI?
+### ❤️‍🩹 Self healing CI?
 
 A self-healing CI system is one component of "agentic CI"
 
@@ -94,7 +94,7 @@ We're adding agents to the development flow, why not also in CI?
 
 ---
 
-### How do we safely ship it?
+### 🚧 How do we safely ship it?
 
 A self healing CI system must be
 - trustworthy
@@ -103,7 +103,7 @@ A self healing CI system must be
 
 ---
 
-### Trust
+### 🤨 Trust
 
 A trustworthy system
 - we believe will produce correct output
@@ -116,7 +116,7 @@ How? The agent in CI needs
 
 ---
 
-### Reliability
+### 🕵️ Reliability
 
 A reliable system is one that we know will consistently fix the problems in CI.
 
@@ -128,18 +128,21 @@ How? Agent evals
 
 ---
 
-### Cost effective
+### 💸 Cost effective
 
 Dont send your entire budget to one of the big AI companies
 
-- Using Anthropic/OpenAI/Google API keys is usually the most expensive option
+- Using Anthropic/OpenAI API is usually the most expensive option
 - Hosting options in your cloud: AWS Bedrock, Google Vertex, Azure AI Service
+  - claude-sonnet-4 on Bedrock is 1:1 pricing with Anthropic's API
+  - Amazon Nova Pro costs 10% of claude-sonnet-4
+  - gpt-oss-120b costs 5% of claude-sonnet-4
 - Run in Kubernetes with GPUs on your nodes
 - Local options with Ollama, Docker, llama.cpp, LM Studio
 
 ---
 
-## Demo
+## 💻 Demo
 
        /_\
       /'-'\            |------------*-----------|
@@ -152,7 +155,7 @@ Dont send your entire budget to one of the big AI companies
 
 ---
 
-## Next steps
+## 🧑‍🎓 Next steps
 
 Check out [dagger.io](https://dagger.io) and join the Discord!
 
