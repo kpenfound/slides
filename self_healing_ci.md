@@ -95,6 +95,12 @@ Open source projects address these problems with
 
 ## 🏭 Self healing systems in industrial factories
 
+A little industrial history lesson
+
+---
+
+## 🏭 Self healing systems in industrial factories
+
 Consider an automated sprinkler system in a factory:
 
 - **Normal operating conditions**: complete lack of fire 😊
@@ -109,7 +115,7 @@ All without AI 🤯
 
 ## ❤️‍🩹 Self healing CI?
 
-A self-healing CI system is one component of "agentic CI"
+A self-healing CI system is one component of a solution
 
 Why?
 - lint errors tell you exactly what the issue is
@@ -167,7 +173,7 @@ Dont send your entire budget to one of the big AI companies
   - claude-sonnet-4 on Bedrock is 1:1 pricing with Anthropic's API
   - Amazon Nova Pro costs 10% of claude-sonnet-4
   - gpt-oss-120b costs 5% of claude-sonnet-4
-- Run in Kubernetes with GPUs on your nodes
+- Run in Kubernetes or Nomad with GPUs on your nodes
 - Locally with Ollama, Docker, llama.cpp, LM Studio
 
 ---
@@ -187,6 +193,7 @@ Dont send your entire budget to one of the big AI companies
 
 ## 🧑‍💻 Your CI
 
+This is Dagger:
 ```typescript
 @func()
 async test(): Promise<string> {
