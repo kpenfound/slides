@@ -6,7 +6,9 @@ paging: Slide %d / %d
 
 # Self Healing CI
 
-Have you ever dreamt of a CI that's always green?
+Evolving the software factory for the engineers and the robots
+
+👷 🤝 🤖
 
 ---
 
@@ -18,9 +20,22 @@ Robots are writing code!!
 - human engineers are legacy tech       🧑‍💻
 - we can all sit back and drink coffee  ☕
 
+*Padme face* 👸🤨 right? right??
+
 ---
 
-### 🔄 The contribution feedback loop
+## 💾 The SDLC
+
+1. Planning & Analysis
+2. Design
+3. Implementation
+4. Testing & Integration
+5. Deployment
+6. Maintenance
+
+---
+
+## 🔄 The contribution feedback loop
 
 ```
 ~~~mermaid-ascii
@@ -34,32 +49,29 @@ Review --> Merged
 ~~~
 ```
 
-- asynchronous between multiple people
-- requires context switching
-
 ---
 
-### 😅 Pull requests are where dreams die
+## 😅 Pull requests yesterday
 
 ```
 ~~~mermaid-ascii
 graph TD
-Developer1 --> Reviewers
-DeveloperN --> Reviewers
+Developer1 --> Reviewer1
+DeveloperN --> ReviewerN
 ~~~
 ```
 
 ---
 
-### 😭 Pull requests are where dreams die
+## 😭 Pull requests today
 
 ```
 ~~~mermaid-ascii
 graph TD
-Developer1 --> Reviewers
-DeveloperN --> Reviewers
-Agent1 --> Reviewers
-AgentN --> Reviewers
+Developer1 --> Reviewer1
+DeveloperN --> ReviewerN
+Agent1 --> ReviewerN
+AgentN --> ReviewerN
 ~~~
 ```
 
@@ -81,7 +93,21 @@ Open source projects address these problems with
 
 ---
 
-### ❤️‍🩹 Self healing CI?
+## 🏭 Self healing systems in industrial factories
+
+Consider an automated sprinkler system in a factory:
+
+- **Normal operating conditions**: complete lack of fire 😊
+- **Incident detection**: trigger mechanism determines if there is a fire 🔥
+- **Incident response**: trigger releases high pressure 🧯
+- **Incident response assessment**: some professionals make sure we're safe 🧑‍🚒
+- **Incident postmortem**: process changes to prevent future fires 👷
+
+All without AI 🤯
+
+---
+
+## ❤️‍🩹 Self healing CI?
 
 A self-healing CI system is one component of "agentic CI"
 
@@ -94,7 +120,7 @@ We're adding agents to the development flow, why not also in CI?
 
 ---
 
-### 🚧 How do we safely ship it?
+## 🚧 How do we safely ship it?
 
 A self healing CI system must be
 - trustworthy
@@ -103,20 +129,24 @@ A self healing CI system must be
 
 ---
 
-### 🤨 Trust
+## 🤨 Trustworthy
 
 A trustworthy system
 - we believe will produce correct output
 - cannot ever give us what we've all come to know as "AI slop".
 
-How? The agent in CI needs
+How?
+
+The agent in CI needs:
 - ability to use our actual dev tools for lint, test, build
 - context on the task the PR is solving
 - context on the code changes in the PR
 
+Engineers need observability to monitor and debug the behavior of the agent
+
 ---
 
-### 🕵️ Reliability
+## 🕵️ Reliable
 
 A reliable system is one that we know will consistently fix the problems in CI.
 
@@ -128,30 +158,111 @@ How? Agent evals
 
 ---
 
-### 💸 Cost effective
+## 💸 Cost effective
 
 Dont send your entire budget to one of the big AI companies
 
 - Using Anthropic/OpenAI API is usually the most expensive option
-- Hosting options in your cloud: AWS Bedrock, Google Vertex, Azure AI Service
+- Hosting options in your cloud: AWS Bedrock, Google Vertex AI, Azure AI Service
   - claude-sonnet-4 on Bedrock is 1:1 pricing with Anthropic's API
   - Amazon Nova Pro costs 10% of claude-sonnet-4
   - gpt-oss-120b costs 5% of claude-sonnet-4
 - Run in Kubernetes with GPUs on your nodes
-- Local options with Ollama, Docker, llama.cpp, LM Studio
+- Locally with Ollama, Docker, llama.cpp, LM Studio
 
 ---
 
 ## 💻 Demo
 
        /_\
-      /'-'\            |------------*-----------|
+      /'-'\            |===========*============|
     ,'/ ^ ^ \',        |       DEMO TIME!       |
     |  >--@ |          |                        |
     '.\___,/.'         |                        |
                        |________________________|
                       /=========================/
                      /____________===__________/
+
+---
+
+## 🧑‍💻 Your CI
+
+```typescript
+@func()
+async test(): Promise<string> {
+  return await dag
+    .container()
+    .from("cypress/included:14.0.3") // containers!
+    .withMountedCache("/root/.npm", dag.cacheVolume("npm-cache")) // cache!
+    .withServiceBinding("localhost", this.backend) // service dependencies!
+    .withServiceBinding("frontend", this.serve())
+    .withWorkdir("/app")
+    .withDirectory("/app", this.source) // typed artifacts!
+    .withExec(["npm", "ci"])
+    .withExec(["npm", "run", "test:e2e"]) // run tests!
+    .stdout();
+}
+```
+
+---
+
+## 🤖 Wheres the robot?
+
+In your Dagger code, if the lint fails, call the agent:
+
+```go
+// Run the CI Checks for the project
+func (g *Greetings) Check( ... ) ( ... ) {
+  // Lint
+  lintOutput, err := g.Lint(ctx)
+  if err != nil {
+    // call agent
+  }
+
+  // Then Test
+  testOutput, err := g.Test(ctx)
+  if err != nil {
+    // call agent
+  }
+}
+```
+
+---
+
+## 🤖 Whats the robot do?
+
+- it has context on the lint/test failure
+- it has the whole repo at the broken commit
+- it has the actual containerized lint/test tools to verify solutions
+
+```go
+// an instance of a workspace that has my source code and dagger functions
+ws := dag.Workspace(
+  g.Frontend.Source(),
+  g.Frontend.AsWorkspaceCheckable(),
+)
+// an environment with the workspace as an input requesting the fixed workspace as an output
+env := dag.Env().
+  WithWorkspaceInput("workspace", ws, "workspace to read, write, and test code").
+  WithWorkspaceOutput("fixed", "workspace with fixed tests")
+// give an llm the environment and a prompt
+return dag.LLM(dagger.LLMOpts{Model: model}).
+  WithEnv(env).
+  WithPromptFile(prompt)
+```
+
+---
+
+## 🗺️ The bigger picture
+
+- address the bottlenecks
+- improve DevEx **all** contributors
+  - create portable tools
+  - maintain developer docs, not rules files
+  - make quality easy
+- dont lose determinism where it counts
+- build workflows, not technologies
+- take care of your humans
 
 ---
 
@@ -163,4 +274,12 @@ Read my blog post about [the evolution of CI](https://dagger.io/blog/evolution-o
 
 Find more of my content at [kylepenfound.com](https://kylepenfound.com)
 
+🦋 kylepenfound.com
+
 Find these slides at [github.com/kpenfound/slides](https://github.com/kpenfound/slides)
+
+The demo repo at [github.com/kpenfound/greetings-api](https://github.com/kpenfound/greetings-api)
+
+```bash
+qr -t https://github.com/kpenfound/slides/blob/main/self_healing_ci.md -s 10
+```
