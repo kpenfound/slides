@@ -18,6 +18,7 @@ func (m *Slides) Slides(
 	return dag.Container().From("cgr.dev/chainguard/wolfi-base:latest").
 		With(withSlides).
 		With(withMermaidAscii).
+		With(withQr).
 		WithWorkdir("/src").
 		WithDirectory("/src", source).
 		Terminal(
@@ -46,4 +47,14 @@ func withMermaidAscii(ctr *dagger.Container) *dagger.Container {
 		WithWorkdir("/app").
 		WithExec([]string{"go", "build", "-o", "mermaid-ascii"})
 	return ctr.WithFile("/bin/mermaid-ascii", build.File("/app/mermaid-ascii"))
+}
+
+func withQr(ctr *dagger.Container) *dagger.Container {
+	slides := dag.Git("https://github.com/kpenfound/qr.git").Head().Tree()
+	build := dag.Container().
+		From("golang:latest").
+		WithDirectory("/app", slides).
+		WithWorkdir("/app").
+		WithExec([]string{"go", "build", "-o", "qr"})
+	return ctr.WithFile("/bin/qr", build.File("/app/qr"))
 }
