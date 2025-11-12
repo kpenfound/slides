@@ -36,7 +36,7 @@ Leading to
 
 ---
 
-## Soup or Salad?
+## Soup or Sandwich?
 
 Can you
 
@@ -93,7 +93,7 @@ Can you
 
 Standard APIs lead to a healthier ecosystem!
 
-Your platform should be a salad.
+Your platform should be a sandwich.
 
 ---
 
