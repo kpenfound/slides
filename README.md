@@ -20,6 +20,14 @@ dagger -m github.com/kpenfound/slides call slides --presentation self_healing_ci
 
 ## Presentations
 
+### 12.11.2025 - Capabilities, APIs, and Experiences
+
+- [slides](./kubecon_na_2025.md)
+
+```
+dagger -m github.com/kpenfound/slides call slides --presentation kubecon_na_2025.md
+```
+
 ### 27.08.2025 - Self-Healing CI
 
 - [slides](./self_healing_ci.md)
