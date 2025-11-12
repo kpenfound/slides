@@ -6,6 +6,8 @@ paging: Slide %d / %d
 
 # CAPABILITIES, APIS, AND EXPERIENCES
 
+### Blueprints To Build Interoperable Platforms
+
 How cloud-native projects can deliver consistent experinces to platform teams
 
 ~~Marcos Nils & Mauricio Salatino~~
